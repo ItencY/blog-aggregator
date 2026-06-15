@@ -25,7 +25,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("cannot open db: %v", err)
 	}
-
+	defer db.Close()
 	dbQueries := database.New(db)
 
 	programState := state{
