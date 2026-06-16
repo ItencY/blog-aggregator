@@ -12,7 +12,7 @@ import (
 
 func handlerRegister(s *state, cmd command) error {
 	if len(cmd.args) < 1 {
-		return errors.New("the login handler expects a single argument, the username")
+		return errors.New("the register handler expects a single argument, the username")
 	}
 	ctx := context.Background()
 	user, err := s.db.CreateUser(ctx, database.CreateUserParams{
