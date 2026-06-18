@@ -23,7 +23,7 @@ func handlerAddFeed(s *state, cmd command) error {
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
-		Name:      user.Name,
+		Name:      cmd.args[0],
 		Url:       cmd.args[1],
 		UserID:    user.ID,
 	})
