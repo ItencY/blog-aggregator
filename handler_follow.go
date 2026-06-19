@@ -11,7 +11,7 @@ import (
 )
 
 func handlerFollow(s *state, cmd command, user database.User) error {
-	if len(cmd.args) < 1 {
+	if len(cmd.args) != 1 {
 		return errors.New("the follow handler expects a single argument, the command name")
 	}
 
