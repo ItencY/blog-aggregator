@@ -10,7 +10,7 @@ import (
 	"github.com/itency/blog_aggregator/internal/database"
 )
 
-func handlerFollow(s *state, cmd command) error {
+func handlerFollow(s *state, cmd command, user database.User) error {
 	if len(cmd.args) < 1 {
 		return errors.New("the follow handler expects a single argument, the command name")
 	}
@@ -21,11 +21,6 @@ func handlerFollow(s *state, cmd command) error {
 	feed, err := s.db.GetFeedByURL(ctx, feedURL)
 	if err != nil {
 		return fmt.Errorf("could not find feed: %v", err)
-	}
-
-	user, err := s.db.GetUser(ctx, s.cfg.CurrentUserName)
-	if err != nil {
-		return fmt.Errorf("Failed to retrieve the user: %v", err)
 	}
 
 	follow, err := s.db.CreateFeedFollow(ctx, database.CreateFeedFollowParams{
